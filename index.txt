@@ -1,4 +1,17 @@
-/* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+<!-Francisco Hernández Padilla
+calificación 8
+evaluó Ana Pau Garfias-->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/styles.css"><!--Se corrigió la ruta-->
+  <title>APIs</title>
+  <link>/* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 button,
 hr,
 input {
@@ -292,4 +305,35 @@ h6 {
 .wrapper h6 {
   color: var(--black);
   text-shadow: none;
+}</link>
+</head>
+
+<body>
+  <p class="name"></p>
+  <p class="blog"></p>
+
+  <script src="assets/js/app.js"></script><!--Se corrigió la rutas-->
+</body>
+<script>const baseEndpoint = 'https://api.github.com';
+const usersEndpoint = `${baseEndpoint}/users`;
+const $n = document.querySelector('.name');
+const $b = document.querySelector('.blog');/*se cambiaron por puntos */
+/*const $l = document.querySelector('.location');*//*se comentó location para que no arruinara nada */
+
+async function displayUser(username) {/*se agregó async*/
+  $n.textContent = 'cargando...';
+  const response = await fetch(`${usersEndpoint}/${username}`);
+  const data = await response.json();
+  $n.textContent = `${data.name}`;
+  $b.textContent = `${data.blog}`;
+  /*$l.textContent = `${data.location}`;*/
 }
+
+function handleError(err) {
+  console.log('OH NO!');
+  console.log(err);
+  $n.textContent = `Algo salió mal: ${err}`
+}
+
+displayUser('stolinski').catch(handleError);</script>
+</html>
